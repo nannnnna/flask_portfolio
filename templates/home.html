@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пример приложения на Flask</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body, .navbar {
+            font-family: Arial, sans-serif; /* Установка шрифта Arial */
+            background-color: black; /* Черный фон для всей страницы */
+            color: white; /* Белый текст */
+        }
+        .navbar-nav {
+            width: 100%;
+            justify-content: space-around; /* Равномерное распределение элементов меню по ширине */
+        }
+        .navbar-nav .nav-item {
+            flex-grow: 1; /* Растягивание элементов меню для заполнения пространства */
+            text-align: center; /* Выравнивание текста пунктов меню по центру */
+        }
+        .navbar {
+            background-color: black;
+            color: white;
+        }
+        
+        .navbar a, .navbar a:hover {
+            color: white;
+        }
+        
+        .navbar .navbar-nav .nav-link {
+            border-right: 1px solid white;
+        }
+        
+        .navbar .navbar-nav .nav-link:last-child {
+            border-right: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Моя Библиотека</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/books">Книги</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <h1>Привет, мир!</h1>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
