@@ -5,39 +5,34 @@
     <title>Список книг</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body, h1, .navbar {
+        body {
             font-family: Arial, sans-serif; /* Установка шрифта Arial */
+            background-color: black; /* Черный фон для всей страницы */
+            color: white; /* Белый текст */
         }
         h1 {
             text-align: center; /* Выравнивание заголовка по центру */
             margin-bottom: 50px; /* Добавление отступа снизу */
         }
-        .card .btn {
-            opacity: 0.7; /* Немного прозрачности для кнопок */
-        }
-        /* Цвета для кнопок, чередующиеся как в радуге */
-        {% for i in range(books|length) %}
-        .card:nth-of-type({{ i + 1 }}) .btn {
-            background-color: hsl({{ i * (360 / (books|length)) }}, 70%, 50%);
-        }
-        body {
-            background-color: black; /* Черный фон для всей страницы */
-            color: white; /* Белый текст */
-        }
         .card {
             background-color: white; /* Белые карточки */
             color: black; /* Черный текст */
+            transition: transform 0.3s; /* Плавная анимация при наведении */
+        }
+        .card:hover {
+            transform: scale(1.05); /* Увеличение карточки при наведении */
         }
         .btn {
-            background-color: black; /* Черные кнопки */
-            color: white; /* Белый текст */
+            background-color: black; /* Черный фон для кнопок */
+            color: white; /* Белый текст на кнопках */
+            border: 1px solid white; /* Белая граница */
         }
         .btn:hover {
             background-color: grey; /* Светло-серый фон при наведении */
-            color: white;
         }
-        body, .navbar {
-            font-family: Arial, sans-serif; /* Установка шрифта Arial */
+        .navbar {
+            background-color: black; /* Черное меню */
+            color: white;
         }
         .navbar-nav {
             width: 100%;
@@ -47,9 +42,23 @@
             flex-grow: 1; /* Растягивание элементов меню для заполнения пространства */
             text-align: center; /* Выравнивание текста пунктов меню по центру */
         }
-        
-        {% endfor %}
-    </style>
+        .navbar a, .navbar a:hover, .navbar a:focus {
+            color: white; /* Белый текст для ссылок меню */
+        }
+        .navbar .navbar-nav .nav-link {
+            border-right: 1px solid white; /* Белые разделители */
+        }
+        .navbar .navbar-nav .nav-link:hover {
+            background-color: grey; /* Серый фон при наведении */
+        }
+        .navbar .navbar-nav .nav-link.active {
+            background-color: orange; /* Фон для активного пункта меню */
+            color: white; /* Черный текст для активного пункта */
+        }
+        .navbar .navbar-nav .nav-link:last-child {
+            border-right: none;
+        }
+    </style>   
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -65,7 +74,7 @@
           </ul>
         </div>
       </nav>
-    <h1>Список книг полученный bs4</h1>
+    <h1>Список книг полученный with bs4</h1>
     <form method="get" action="{{ url_for('books') }}">
         <select name="sort">
             <option value="price_asc">Цена по возрастанию</option>
@@ -77,13 +86,14 @@
     <div class="container">
         <div class="row">
             {% for book in books %}
-            <div class="col-md-4 mb-4"> <!-- mb-4 добавляет отступ снизу каждой карточки -->
-                <div class="card h-100"> <!-- h-100 делает карточки одинаковой высоты -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
                     <img src="{{ book.cover_image_url }}" class="card-img-top" alt="{{ book.title }}">
-                    <div class="card-body d-flex flex-column"> <!-- d-flex и flex-column для выравнивания элементов внутри карточки -->
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ book.title }}</h5>
                         <p class="card-text">{{ book.price }}</p>
-                        <a href="{{ book.book_url }}" class="btn btn-primary mt-auto">Подробнее</a> <!-- mt-auto прижимает кнопку к низу карточки -->
+                        <a href="{{ book.book_url }}" class="btn btn-primary mt-auto">Подробнее</a>
+                        <a href="{{ book.book_url }}" class="btn btn-primary mt-auto">Купить</a>
                     </div>
                 </div>
             </div>

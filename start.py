@@ -17,6 +17,8 @@ stripe.api_key = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
 app = Flask(__name__)
 app.secret_key = 'sk_test_51NsTBiF6oMer2mpJqJr6mXh8S7GiJLXsPzRXgiVbFnMqxHVrPiBgiQzpZRwmhXNQ14lM7Scia0c4GddMZk0HYfxX0036Nvr5fy' # Нужно для работы сессий
 
+
+
 @app.route('/create-checkout-session', methods=['GET'])
 def create_checkout_session():
     try:
@@ -65,13 +67,14 @@ def books():
     # Создание запроса к базе данных с учетом параметров сортировки и фильтрации
     query = session.query(Book)
     if in_stock == '1':
-        query = query.filter(Book.status == 'In Stock')
+        query = query.filter(Book.status == 'In stock')
     if sort_order == 'price_asc':
         query = query.order_by(Book.price.asc())
     elif sort_order == 'price_desc':
         query = query.order_by(Book.price.desc())
 
     books = query.all()
+
 
     # Закрытие сессии
     session.close()
