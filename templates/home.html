@@ -3,42 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Пример веб-приложения на Flask</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif; /* Установка шрифта Arial */
-            background-color: black; /* Черный фон для всей страницы */
-            color: white; /* Белый текст */
+            background-color: black;
+            color:white;
+            font-family: cursive;
         }
-        .navbar {
-            background-color: black; /* Черное меню */
-            color: white;
+        .box {
+          display: flex;
         }
-        .navbar-nav {
-            width: 100%;
-            justify-content: space-around; /* Равномерное распределение элементов меню по ширине */
-        }
-        .navbar-nav .nav-item {
-            flex-grow: 1; /* Растягивание элементов меню для заполнения пространства */
-            text-align: center; /* Выравнивание текста пунктов меню по центру */
-        }
-        .navbar a, .navbar a:hover, .navbar a:focus {
-            color: white; /* Белый текст и для состояний наведения и фокуса */
-        }
-        .navbar .navbar-nav .nav-link {
-            border-right: 1px solid white; /* Белые разделители */
-        }
-        .navbar .navbar-nav .nav-link:hover {
-            background-color: grey; /* Серый фон при наведении */
-        }
-        .navbar .navbar-nav .nav-link.active {
-            background-color: orange; /* Фон для активного пункта меню */
-            color: white; /* Черный текст для активного пункта */
-        }
-        .navbar .navbar-nav .nav-link:last-child {
-            border-right: none;
-        }
-    </style>    
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -46,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Главная <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/books">Книги</a>
@@ -56,8 +30,14 @@
       </nav>
     <h2>Приветствую вас в моем порфтолио</h2>
     <h5>Это веб-приложение создано с целью демонстрации навыков. <p>Оно сохраняет в бд данные со стороннего специально предназначенного для этого портала, используя анализ html-тегов.</p> </h5>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="box">
+      <div>One</div>
+      <div>Two</div>
+      <div>Three
+        <br>has
+        <br>extra
+        <br>text
+      </div>
+    </div>
 </body>
 </html>
