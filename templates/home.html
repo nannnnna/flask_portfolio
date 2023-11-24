@@ -5,39 +5,177 @@
     <title>Пример веб-приложения на Flask</title>
     <style>
         body {
-            background-color: black;
-            color:white;
-            font-family: cursive;
+          background-color: black;
+          color:white;
+          font-family: cursive;
+          margin-top: 0; /* Убедитесь, что нет отступа сверху */
+          padding-top: 56px;
         }
         .box {
           display: flex;
+          text-align: center;
         }
+        nav {
+          background-color: fade(white, 50%);
+          size: 100%;
+        }
+        ul {
+            position:fixed;
+            top: 0;
+            width: 100%;
+            height: 11%;
+            background-color: white;
+            text-align: center;
+            list-style-type: none;
+        }
+        li {
+            float: left;
+            border: 2px solid red;
+        } 
+        li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 20px 30px;
+            text-decoration: none;
+        }
+        li a:hover {
+            background-color: #111;
+            color: white;
+        }
+        .active {
+            background-color: red;
+        }
+        .one {
+            flex: 1 1 auto;
+        }
+        
+        .two {
+          flex: 1 1 auto;
+        }
+        
+        .three {
+          flex: 1 1 auto;
+        }
+        .four {
+          flex: 1 1 auto;
+        }
+        /* Стиль всплывающего окна */
+        .popup {
+            display: none; /* Скрыто по умолчанию */
+            position: fixed; /* Остается на месте при прокрутке */
+            z-index: 1; /* Сидит над другими элементами */
+            left: 0;
+            top: 0;
+            width: 100%; /* Полная ширина */
+            height: 100%; /* Полная высота */
+            overflow: auto; /* Включить прокрутку, если нужно */
+            background-color: rgb(0,0,0); /* Цвет фона */
+            background-color: rgba(0,0,0,0.4); /* Цвет фона с небольшой прозрачностью */
+        }
+
+        /* Стиль содержимого всплывающего окна */
+        .popup-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% от верха и центрировано по горизонтали */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Можете изменить ширину */
+        }
+
+        /* Стиль кнопки закрытия */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        p{
+          color: black;
+        }
+        .hidden-text {
+          display: none; /* Скрыт по умолчанию */
+          /* Добавьте другие стили, такие как фон, отступы и т.д. */
+      }
+      
+      .close {
+          cursor: pointer; /* Делаем крестик кликабельным */
+          /* Другие стили для крестика */
+      }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Моя Библиотека</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Главная <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/books">Книги</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    <h2>Приветствую вас в моем порфтолио</h2>
-    <h5>Это веб-приложение создано с целью демонстрации навыков. <p>Оно сохраняет в бд данные со стороннего специально предназначенного для этого портала, используя анализ html-тегов.</p> </h5>
-    <div class="box">
-      <div>One</div>
-      <div>Two</div>
-      <div>Three
-        <br>has
-        <br>extra
-        <br>text
-      </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">About </span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/">Suda </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/">Tuda </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/">Tam </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/">Syam </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/books">Books</a>
+        </li>
+      </ul>
     </div>
+  </nav>
+    <h2>Welcome to my porftolio</h2>
+    <h4>This is where I practice and demonstrate my skills.<p>The book page is the result of parsing a specially designed site by means of html-code analysis </p> </h4>
+    <div class="box">
+      <div class="one"> <button onclick="openPopup()">What is About?</button></div>
+      <div class="two">
+        <button onclick="toggleText()">What is Books?</button>
+        <div id="textBlock" class="hidden-text">
+            <span class="close" onclick="toggleText()">&times;</span>
+            <p>Здесь ваш текст о книгах.</p>
+        </div>
+      </div>
+      <div class="three">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>Three
+      </div>
+      <div class="four">Four</div>
+    </div>
+    <div id="popup" class="popup">
+      <div class="popup-content">
+          <span class="close" onclick="closePopup()">&times;</span>
+          <p> This is Pop-Up</p>
+          <p>About is the presentation and navigation page, explaining the meaning of the other pages</p>
+          
+      </div>
+  </div>
+  <script>
+    function openPopup() {
+        document.getElementById("popup").style.display = "block";
+    }
+    
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+    </script>
 </body>
 </html>
